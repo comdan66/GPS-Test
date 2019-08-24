@@ -1,0 +1,479 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2019, Ginkgo
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "Ginkgo";
+
+
+html {
+  position: relative;
+
+  body {
+    position: relative;
+
+    display: inline-block;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    color: rgba(90, 90, 90, 1.00);
+    text-align: center;
+    font-size: medium;
+    font-family: "微軟正黑體", "Open sans", "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+    
+    // 文字染色，背景色、文字色
+    @include selection(rgba(120, 186, 255, 1.00), rgba(255, 255, 255, 1));
+    background-color: rgba(247, 248, 249, 1);
+  }
+}
+
+h1 {
+  display: block;
+  margin: 8px auto;
+  margin-top: 16px;
+  width: 100%;
+  max-width: 960px;
+  height: 32px;
+  line-height: 32px;
+  text-align: left;
+  @include range-width(0, 980px) {
+    padding: 0 8px;
+  }
+  @include range-width(0, 520px) {
+    font-size: 20px;
+    height: 24px;
+    line-height: 24px;
+  };
+}
+
+#main {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
+  margin-top: 16px;
+  &:empty:before {
+    content: '無資料';
+    display: inline-block;
+    width: 100%;
+    height: 64px;
+    line-height: 64px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(169, 169, 169, 1.00);
+    font-style: italic;
+    @include text-shadow(1px 1px 1px white)
+  }
+  div {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    @include clearfix();
+
+    span {
+      position: relative;
+      display: inline-block;
+      float: left;
+      background-color: white;
+      height: 44px;
+      line-height: 44px;
+      padding: 0 12px;
+      
+      &:empty:after {
+        content: '-';
+        color: rgba(180, 180, 180, 1.00);
+        font-style: italic;
+        @include text-shadow(1px 1px 1px white);
+        font-size: 10px;
+      }
+    }
+
+    @include range-width(0, 450px) {
+      .id {
+        @include border-top-radius(3px);
+      }
+      .timeAt {
+        border-bottom: 1px solid rgba(222, 222, 222, .9);
+        @include border-bottom-radius(3px);
+        &:before {
+          height: 44px - 2px;
+          line-height: 44px - 2px;
+        }
+      }
+
+      padding: 0 8px;
+      + div {
+        margin-top: 16px;
+      }
+      span {
+        width: 100%;
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+
+        border-top: 1px solid rgba(222, 222, 222, .9);
+        padding-left: 88px;
+        &:before {
+          position: absolute;
+          content: attr(data-title);
+          left: 0;
+          top: 0;
+          display: inline-block;
+          width: 88px - 12px;
+          height: 44px - 1px;
+          line-height: 44px - 1px;
+          padding: 0;
+          padding-right: 8px;
+          font-size: 12px;
+          background-color: rgba(233, 233, 233, 1);
+          border-right: 1px solid rgba(222, 222, 222, .9);
+          text-align: right;
+        }
+      }
+    }
+    @include range-width(450px, 520px) {
+      padding: 0 8px;
+      .id {
+        width: 100%;
+        @include border-top-radius(3px);
+        @include border-top-radius(3px);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+      }
+      .latitude {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+      }
+      .longitude {
+        width: calc(100% / 2);
+        @include border-top-right-radius(3px);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+      }
+      .pressure {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+      }
+      .temperature {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+      }
+      .humidity {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+      }
+      .cntSatellite {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+        
+      }
+      .timeAt {
+        width: 100%;
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+        border-bottom: 1px solid rgba(222, 222, 222, .9);
+        @include border-bottom-radius(3px);
+        &:before {
+          height: 44px - 2px;
+          line-height: 44px - 2px;
+        }
+      }
+      + div {
+        margin-top: 16px;
+      }
+      span {
+        border-top: 1px solid rgba(222, 222, 222, .9);
+        padding-left: 88px;
+        &:before {
+          position: absolute;
+          content: attr(data-title);
+          left: 0;
+          top: 0;
+          display: inline-block;
+          width: 88px - 12px;
+          height: 44px - 1px;
+          line-height: 44px - 1px;
+          padding: 0;
+          padding-right: 8px;
+          font-size: 12px;
+          background-color: rgba(233, 233, 233, 1);
+          border-right: 1px solid rgba(222, 222, 222, .9);
+          text-align: right;
+        }
+      }
+    }
+
+    @include range-width(520px, 680px) {
+      padding: 0 8px;
+      .id {
+        width: 100%;
+        @include border-top-radius(3px);
+        @include border-top-radius(3px);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+      }
+      .latitude {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+      }
+      .longitude {
+        width: calc(100% / 2);
+        @include border-top-right-radius(3px);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+      }
+      .pressure {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+      }
+      .temperature {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+      }
+      .humidity {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+      }
+      .cntSatellite {
+        width: calc(100% / 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+        
+      }
+      .timeAt {
+        width: 100%;
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+        border-bottom: 1px solid rgba(222, 222, 222, .9);
+        @include border-bottom-radius(3px);
+        &:before {
+          height: 44px - 2px;
+          line-height: 44px - 2px;
+        }
+      }
+      + div {
+        margin-top: 16px;
+      }
+      span {
+        border-top: 1px solid rgba(222, 222, 222, .9);
+        padding-left: 90px;
+        &:before {
+          position: absolute;
+          content: attr(data-title);
+          left: 0;
+          top: 0;
+          display: inline-block;
+          width: 90px - 12px;
+          height: 44px - 1px;
+          line-height: 44px - 1px;
+          padding: 0;
+          padding-right: 8px;
+          font-size: 12px;
+          background-color: rgba(233, 233, 233, 1);
+          border-right: 1px solid rgba(222, 222, 222, .9);
+          text-align: right;
+        }
+      }
+    }
+    @include range-width(680px, 980px) {
+      padding: 0 8px;
+      .id {
+        width: calc(100% / 3);
+        @include border-top-left-radius(3px);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+      }
+      .latitude {
+        width: calc(100% / 3);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+      }
+      .longitude {
+        width: calc(100% / 3);
+        @include border-top-right-radius(3px);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+      }
+      .pressure {
+        width: calc(100% / 3);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+      }
+      .temperature {
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        width: calc(100% / 3);
+      }
+      .humidity {
+        width: calc(100% / 3);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+      }
+      .cntSatellite {
+        width: calc(100% / 3);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-bottom: 1px solid rgba(222, 222, 222, .9);
+        @include border-bottom-left-radius(3px);
+        &:before {
+          height: 44px - 2px;
+          line-height: 44px - 2px;
+        }
+      }
+      .timeAt {
+        width: calc(100% / 3 * 2);
+        border-left: 1px solid rgba(222, 222, 222, .9);
+        border-right: 1px solid rgba(222, 222, 222, .9);
+        border-bottom: 1px solid rgba(222, 222, 222, .9);
+        @include border-bottom-right-radius(3px);
+        &:before {
+          height: 44px - 2px;
+          line-height: 44px - 2px;
+        }
+      }
+      + div {
+        margin-top: 16px;
+      }
+      span {
+        border-top: 1px solid rgba(222, 222, 222, .9);
+        padding-left: 90px;
+        &:before {
+          position: absolute;
+          content: attr(data-title);
+          left: 0;
+          top: 0;
+          display: inline-block;
+          width: 90px - 12px;
+          height: 44px - 1px;
+          line-height: 44px - 1px;
+          padding: 0;
+          font-size: 12px;
+          padding-right: 12px;
+          background-color: rgba(233, 233, 233, 1);
+          border-right: 1px solid rgba(222, 222, 222, .9);
+          text-align: right;
+        }
+      }
+    }
+    @include range-width(980px) {
+      .id {
+        width: 72px;
+        text-align: center;
+      }
+      .latitude {
+        width: 120px;
+      }
+      .longitude {
+        width: 120px;
+      }
+      .pressure {
+        text-align: right;
+        width: 84px;
+      }
+      .temperature {
+        text-align: right;
+        width: 84px;
+      }
+      .humidity {
+        text-align: right;
+        width: 84px;
+      }
+      .cntSatellite {
+        text-align: right;
+        width: 84px;
+      }
+      .timeAt {
+        text-align: right;
+        width: calc(100% - #{(72px + 120px + 120px + 84px + 84px + 84px + 84px)});
+      }
+
+      &:first-child {
+        @include border-top-radius(3px);
+      }
+      &:last-child {
+        border-bottom: 1px solid rgba(222, 222, 222, .9);
+        @include border-bottom-radius(3px);
+      }
+      span {
+        border-top: 1px solid rgba(222, 222, 222, .9);
+        &:first-child {
+          border-left: 1px solid rgba(222, 222, 222, .9);
+        }
+        &:last-child {
+          border-right: 1px solid rgba(222, 222, 222, .9);
+        }
+      }
+      &:first-child {
+        span {
+          margin-top: 32px;
+        }
+        span:before {
+          content: attr(data-title);
+          position: absolute;
+          top: -32px;
+          left: 0;
+          display: inline-block;
+          width: 100%;
+          height: 32px;
+          line-height: 32px;
+          font-weight: bold;
+          padding: 0 12px;  
+          color: rgba(169, 169, 169, 1.00);
+          @include text-shadow(1px 1px 1px white)
+        }
+
+      }
+    };
+  }
+}
+#pages {
+  display: block;
+  margin: 8px auto;
+  margin-top: 16px;
+  width: 100%;
+  max-width: 960px;
+  height: 32px;
+  line-height: 32px;
+  text-align: left;
+  @include range-width(0, 980px) {
+    padding: 0 8px;
+  } 
+  text-align: right;
+  > div {
+    display: inline-block;
+    @include clearfix();
+    > * {
+      float: left;
+      display: inline-block;
+      min-width: 32px;
+      height: 32px;
+      line-height: 32px - 2px;
+      background-color: white;
+      border: 1px solid rgba(222, 222, 222, .9);
+      @include border-radius(3px);
+      text-decoration: none;
+      text-align: center;
+      padding: 0 8px;
+      + * {
+        margin-left: 8px;
+      }
+      color: rgba(120, 120, 120, 1);
+      @include transition(background-color .3s);
+      
+      &.active {
+        background-color: rgba(240, 240, 240, 1);
+        font-weight: bold;
+        color: rgba(64, 64, 64, 1);
+      }
+      &:hover {
+        background-color: rgba(240, 240, 240, 1);
+      }
+      &.next:before { content: '下一頁' }
+      &.last:before { content: '最後頁' }
+      &.prev:before { content: '上一頁' }
+      &.first:before { content: '第一頁' }
+    }
+  }
+}
