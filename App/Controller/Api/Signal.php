@@ -27,6 +27,10 @@ class Signal extends ApiController {
   }
   
   public function create() {
+
+    Log::info('->' . json_encode($_POST));
+    Log::info('=>' . file_get_contents('php://input'));
+
     $params = Input::ValidPost(function($params) {
       Validator::must($params, 'latitude', '緯度')->isLat();
       Validator::must($params, 'longitude', '經度')->isLng();
