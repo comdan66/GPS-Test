@@ -57,4 +57,35 @@ class Signal extends ApiController {
       'cntSatellite' => $obj->cntSatellite,
     ];
   }
+  
+  public function createGet() {
+
+    Log::info('->' . json_encode($_GET));
+
+    $params = Input::ValidGet(function($params) {
+      Validator::must($params, 'latitude', '緯度')->isLat();
+      Validator::must($params, 'longitude', '經度')->isLng();
+      Validator::optional($params, 'pressure', '氣壓')->default(null)->isNumber();
+      Validator::optional($params, 'temperature', '溫度')->default(null)->isNumber();
+      Validator::optional($params, 'humidity', '濕度')->default(null)->isNumber();
+      Validator::optional($params, 'timeAt', '時間')->default(null)->isDatetime();
+      Validator::optional($params, 'cntSatellite', '衛星數量')->default(0)->isInteger(0);
+      return $params;
+    });
+
+    transaction(function() use (&$params, &$obj) {
+      return $obj = \M\Signal::create($params);
+    });
+
+    return [
+      'id' => $obj->id,
+      'latitude' => $obj->latitude,
+      'longitude' => $obj->longitude,
+      'pressure' => $obj->pressure,
+      'temperature' => $obj->temperature,
+      'humidity' => $obj->humidity,
+      'timeAt' => $obj->timeAt,
+      'cntSatellite' => $obj->cntSatellite,
+    ];
+  }
 }
