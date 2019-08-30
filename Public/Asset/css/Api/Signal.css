@@ -91,3 +91,6 @@ h1 { display: block; margin: 8px auto; margin-top: 16px; width: 100%; max-width:
 #pages > div > *.last:before { content: "最後頁"; }
 #pages > div > *.prev:before { content: "上一頁"; }
 #pages > div > *.first:before { content: "第一頁"; }
+
+a { display: inline-block; width: 120px; height: 36px; line-height: 36px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; background-color: #5a9c9a; color: white; text-decoration: none; cursor: pointer; margin-bottom: 16px; -moz-transition: background-color 0.3s; -o-transition: background-color 0.3s; -webkit-transition: background-color 0.3s; transition: background-color 0.3s; }
+a:hover { background-color: #73bbb9; }

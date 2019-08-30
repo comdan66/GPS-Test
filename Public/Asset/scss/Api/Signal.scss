@@ -477,3 +477,21 @@ h1 {
     }
   }
 }
+
+a {
+  display: inline-block;
+  width: 120px;
+  height: 36px;
+  line-height: 36px;
+  @include border-radius(3px);
+  background-color: rgba(90, 156, 154, 1.00);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 16px;
+  &:hover {
+    background-color: rgba(115, 187, 185, 1.00);
+  }
+  @include transition(background-color .3s);
+  
+}

@@ -58,6 +58,10 @@ class Signal extends ApiController {
     ];
   }
   
+  public function deleteAll() {
+    \M\Signal::truncate();
+    return Url::refresh(Url::router('ApiSignalIndex'));
+  }
   public function createGet() {
 
     Log::info('->' . json_encode($_GET));

@@ -11,6 +11,9 @@
   </head>
   <body>
     <h1>GPS 訊號查詢</h1>
+    
+    <a href="<?php echo Url::router('ApiSignalDeleteAll');?>">清空</a>
+
     <?php echo \HTML\Div::create(array_map(function($signal) {
       return \HTML\Div::create([
         \HTML\Span::create($signal->id)->class('id')->data('title', 'ID'),
