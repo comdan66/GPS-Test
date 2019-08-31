@@ -15,8 +15,10 @@
       <div id='map' data-api='<?php echo Url::router('ApiSignalApi');?>'></div>
       
       <a class='back' href="<?php echo Url::router('ApiSignalIndex');?>">回列表</a>
-      <a class='reload' href="<?php echo Url::router('ApiSignalMap');?>">重新刷新</a>
+      <a class='reload' id='reload'>重新刷新</a>
     </div>
+
+    <div id='loading'></div>
 
   </body>
 </html>

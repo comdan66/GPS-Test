@@ -41,6 +41,8 @@ function fetch() {
 $(function() {
   var $body = $('body');
   var $map = $('#map');
+  var $reload = $('#reload');
+  var $loading = $('#loading');
 
   _mFunc = function() {
     if (_mMap) return;
@@ -50,10 +52,19 @@ $(function() {
 
     _polyline = new google.maps.Polyline({ map: _mMap, strokeWeight: 5, strokeColor: 'rgba(66, 134, 244, .75)' });    
 
-    $.get($map.data('api') + '?t=' + time(), function(r) {
-      _data = r
-      fetch();
-    })
+    $reload.click(function() {
+      $loading.removeClass('hide');
+
+      $.get($map.data('api') + '?t=' + time(), function(r) {
+        _data = r
+        fetch();
+        setTimeout(function() {
+          $loading.addClass('hide');
+        }, 300);
+      });
+
+    }).click();
+
     _mMap.addListener('idle', fetch);
   };
 
