@@ -13,6 +13,7 @@
     <h1>GPS 訊號查詢</h1>
     
     <a class='delete' href="<?php echo Url::router('ApiSignalDeleteAll');?>">清空</a>
+    <a class='map' href="<?php echo Url::router('ApiSignalMap');?>">地圖模式</a>
 
     <?php echo \HTML\Div::create(array_map(function($signal) {
       return \HTML\Div::create([
