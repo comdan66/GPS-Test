@@ -62,6 +62,31 @@ class Signal extends ApiController {
     \M\Signal::truncate();
     return Url::refresh(Url::router('ApiSignalIndex'));
   }
+  public function api() {
+    $signals = \M\Signal::all([
+     'order'  => 'id DESC']);
+
+    return array_map(function($signal) {
+      return [$signal->latitude, $signal->longitude, $signal->id];
+    }, $signals);
+  }
+  public function map() {
+
+    Load::systemLib('Asset');
+
+    $signals = \M\Signal::all([
+     'order'  => 'id DESC']);
+
+    $asset = Asset::create()
+         ->addJS('/Asset/js/_/jQuery.js')
+         ->addJS('/Asset/js/Api/SignalMap.js')
+         ->addCSS('/Asset/css/Api/SignalMap.css');
+
+    return View::create('Api/Signal/map.php')
+               ->with('signals', $signals)
+               ->with('asset', $asset);
+  }
+
   public function createGet() {
 
     Log::info('->' . json_encode($_GET));
